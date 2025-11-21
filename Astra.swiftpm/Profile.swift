@@ -12,9 +12,21 @@ struct Profile: View {
 	
 	@State private var tog_prof_1 = false
 	
-	@State private var TeachersName = "example"
-	@State private var ClassName = "example"
+	@State private var TeachersName = "Geo"
+	@State private var ClassName = "Mr. Miles"
 	@State private var GPA = "9.0"
+	
+	func addClass(name: String, gpa: String, teacher: String) {
+		
+		print("OIHDOAHDAOUWDHOAHD")
+		
+		print(classes(name: name, gpa: Float(gpa)!, teacher: teacher))
+		
+		Classes.append(classes(name: name, gpa: Float(gpa)!, teacher: teacher))
+		
+		print(Classes)
+		
+	}
 	
     var body: some View {
 		ZStack(alignment: .bottom) {
@@ -190,18 +202,21 @@ struct Profile: View {
 																}
 																	.foregroundStyle(text)
 																
-//																RoundedRectangle(cornerRadius: 20)
-//																	.frame(width: 100, height: 40)
-//																	.overlay(
-//																		Text("Submit")
-//																			.font(.system(size: 20, weight: .semibold, design: .default))
-//																			.foregroundStyle(text)
-//																	)
-//																	.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
-//																	.onTapGesture{
-//																		Classes.append(classes(name: ClassName, gpa: Float(GPA)!, teacher: TeachersName))
-//																		print(Classes)
-//																	}
+																RoundedRectangle(cornerRadius: 20)
+																	.frame(width: 100, height: 40)
+																	.overlay(
+																		Text("Submit")
+																			.font(.system(size: 20, weight: .semibold, design: .default))
+																			.foregroundStyle(text)
+																	)
+																	.onTapGesture {
+																		
+																		addClass(name: ClassName, gpa: GPA, teacher: TeachersName)
+																		
+																		print("IM ALIVE ")
+																		
+																	}
+																	.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
 																	
 																
 															}

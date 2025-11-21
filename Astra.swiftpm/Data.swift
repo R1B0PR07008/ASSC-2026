@@ -47,20 +47,20 @@ struct recomendation : Identifiable, Codable, Hashable {
 	var state: String
 }
 
-let Recon_letters : [recomendation] = [
+nonisolated(unsafe) var Recon_letters : [recomendation] = [
 	recomendation(name: "Ms. Meatland", state: "Recieved"),
 	recomendation(name: "Mr. Doodle", state: "Pending"),
 	recomendation(name: "Mr. Pue", state: "Writting")
 ]
 
-let Transcripts: [transcripts] = [
+nonisolated(unsafe) var Transcripts: [transcripts] = [
 	transcripts(grade: "9th", school: "School 1"),
 	transcripts(grade: "10th", school: "School 1"),
 	transcripts(grade: "11th", school: "School 1"),
 	transcripts(grade: "12th", school: "School 1")
 ]
 
-let Classes: [classes] = [
+nonisolated(unsafe) var Classes: [classes] = [
 	classes(name: "English", gpa: 9, teacher: "Ms. Meatland"),
 	classes(name: "Spanish", gpa: 7, teacher: "Mr. Doodle"),
 	classes(name: "Coding", gpa: 10, teacher: "Mr. Pue"),
@@ -71,7 +71,7 @@ let Classes: [classes] = [
 	classes(name: "Economics", gpa: 10, teacher: "Ms. Phillips")
 ]
 
-let Extras: [extras] = [
+nonisolated(unsafe) var Extras: [extras] = [
 	extras(name: "Extra 1", hours: 10, description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", role: "Leader", impact: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", relevance: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat."),
 
 	extras(name: "Extra 2", hours: 25, description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", role: "Member", impact: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", relevance: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat."),
@@ -93,7 +93,7 @@ let Extras: [extras] = [
 	extras(name: "Extra 10", hours: 18, description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", role: "Secretary", impact: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", relevance: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat."),
 ]
 
-let mockScholarChipsData: [scholarchips] = [
+nonisolated(unsafe) var mockScholarChipsData: [scholarchips] = [
 	scholarchips(name: "scholarship 1", description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", description2: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce.", place: "place 1", amount: 10000, currency: "USD", min_requiered_gpa: 9),
 
 	scholarchips(name: "scholarship 2", description: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.", description2: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce.", place: "place 2", amount: 8500, currency: "EUR", min_requiered_gpa: 8.5),
