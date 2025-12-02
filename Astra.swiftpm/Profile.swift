@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+func calculateAverageGPA() -> Float {
+	guard !Classes.isEmpty else { return 0.0 }
+	
+	let totalGPA = Classes.reduce(0.0) { $0 + $1.gpa }
+	return Float(totalGPA) / Float(Classes.count)
+}
+
 @available(iOS 26.0, *)
 struct Profile: View {
 	
@@ -15,6 +22,8 @@ struct Profile: View {
 	@State private var TeachersName = "Geo"
 	@State private var ClassName = "Mr. Miles"
 	@State private var GPA = "9.0"
+	
+	@State private var averageGPA = calculateAverageGPA()
 	
 	func addClass(name: String, gpa: String, teacher: String) {
 		
@@ -36,9 +45,10 @@ struct Profile: View {
 				Text("Profile")
 					.foregroundStyle(text2)
 					.font(.system(size: 50,weight: .bold, design: .default))
+					.padding(.bottom, 10)
 				
 				RoundedRectangle(cornerRadius: 20)
-					.frame(width: 750, height: 200)
+					.frame(width: 750, height: 140)
 					.overlay(
 						
 						HStack {
@@ -47,13 +57,13 @@ struct Profile: View {
 									.font(.system(size: 40, weight: .bold, design: .default))
 								
 								Spacer()
-									.frame(height: 20)
+									.frame(height: 5)
 								
 								Text("Name and Last Name")
 									.font(.system(size: 30, weight: .bold, design: .default))
 								
 								Spacer()
-									.frame(height: 10)
+									.frame(height: 5)
 								
 								Text("Email@iCloud.com")
 									.font(.system(size: 20, weight: .bold, design: .default))
@@ -73,6 +83,48 @@ struct Profile: View {
 						
 					)
 					.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
+				
+				HStack{
+					RoundedRectangle(cornerRadius: 20)
+						.frame(width: 370, height: 55)
+						.overlay(
+							
+							HStack {
+								
+								Text("Current GPA: ")
+									.font(.system(size: 27, weight: .bold, design: .default))
+								
+								Text("\(calculateAverageGPA(), specifier: "%.2f")")
+									.font(.system(size: 27, weight: .bold, design: .default))
+								
+								
+							}
+								.padding(20)
+								.foregroundStyle(text)
+							
+						)
+						.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
+					
+					RoundedRectangle(cornerRadius: 20)
+						.frame(width: 370, height: 55)
+						.overlay(
+							
+							HStack {
+								
+								Text("Target GPA: ")
+									.font(.system(size: 27, weight: .bold, design: .default))
+								
+								Text("9.5")
+									.font(.system(size: 27, weight: .bold, design: .default))
+								
+								
+							}
+								.padding(20)
+								.foregroundStyle(text)
+							
+						)
+						.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
+				}
 				
 				RoundedRectangle(cornerRadius: 20)
 					.frame(width: 750, height: 300)
@@ -202,40 +254,47 @@ struct Profile: View {
 																}
 																	.foregroundStyle(text)
 																
-																RoundedRectangle(cornerRadius: 20)
-																	.frame(width: 100, height: 40)
-																	.overlay(
-																		Text("Submit")
-																			.font(.system(size: 20, weight: .semibold, design: .default))
-																			.foregroundStyle(text)
-																	)
-																	.onTapGesture {
-																		
-																		addClass(name: ClassName, gpa: GPA, teacher: TeachersName)
-																		
-																		print("IM ALIVE ")
-																		
-																	}
-																	.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
+																Button(action: {
+																	addClass(name: ClassName, gpa: GPA, teacher: TeachersName)
+																	print("IM ALIVE ")
+																}) {
+																	RoundedRectangle(cornerRadius: 20)
+																		.frame(width: 100, height: 40)
+																		.overlay(
+																			Text("Submit")
+																				.font(.system(size: 20, weight: .semibold, design: .default))
+																				.foregroundStyle(text)
+																		)
+																		.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
+																}
+																.buttonStyle(.plain)
 																	
 																
 															}
+															
 														}
 														else {
 															HStack {
 																Text("Add more Classes")
 																	.font(.system(size: 20, weight: .semibold, design: .default))
-															}
-																.foregroundStyle(text)
+																	}
+																	.foregroundStyle(text)
+																	.frame(maxWidth: .infinity, maxHeight: .infinity) // Fill the space
+																	.contentShape(Rectangle()) // Make entire area tappable
+																	.onTapGesture {
+																		withAnimation {
+																			tog_prof_1.toggle()
+																		}
+																	}
 														}
 													}
 												)
 												.glassEffect(.regular.tint(back2).interactive(), in: .rect(cornerRadius: 20.0))
-												.onTapGesture{
-													withAnimation {
-														tog_prof_1.toggle()
-													}
-												}
+//												.onTapGesture{
+//													withAnimation {
+//														tog_prof_1.toggle()
+//													}
+//												}
 											
 										}
 									}
