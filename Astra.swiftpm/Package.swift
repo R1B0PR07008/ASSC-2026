@@ -20,8 +20,8 @@ let package = Package(
             teamIdentifier: "8FQWGFFDQM",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .box),
-            accentColor: .asset("AccentColor"),
+            appIcon: .placeholder(icon: .cloud),
+            accentColor: .presetColor(.cyan),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
@@ -31,8 +31,7 @@ let package = Package(
                 .landscapeRight,
                 .landscapeLeft,
                 .portraitUpsideDown(.when(deviceFamilies: [.pad]))
-            ],
-            appCategory: .education
+            ]
         )
     ],
     targets: [
@@ -41,5 +40,5 @@ let package = Package(
             path: "."
         )
     ],
-    swiftLanguageVersions: [.version("6")]
+    swiftLanguageVersions: [.v6]
 )

@@ -1,211 +1,108 @@
 import SwiftUI
 
-let back = Color(UIColor(named: "Back")!)
-let back2 = Color(UIColor(named: "back2")!)
-let text = Color(UIColor(named: "text")!)
-let text2 = Color(UIColor(named: "text2")!)
-
 @available(iOS 26.0, *)
-struct Home: View {
-
-	@State private var expandedItemID: UUID? = nil
+struct ContentView: View {
+	
+	@Environment(\.colorScheme) var colorScheme
 	
 	var body: some View {
-		ScrollView {
+		ZStack {
+			
+			VStack {
 				
-			VStack(alignment: .leading) {
-					
-					Text("Available Scholarships")
-						.foregroundStyle(text2)
-						.font(.system(size: 50,weight: .bold, design: .default))
-					
-					ForEach(mockScholarChipsData, id: \.self) { data in
-						
-						RoundedRectangle(cornerRadius: 20)
-							.frame(width: 750, height: expandedItemID == data.id ? 400 : 200)
-							.overlay {
-								HStack {
-									VStack (alignment: .leading) {
-										Text(data.name)
-											.foregroundStyle(text)
-											.font(.system(size: 30, weight: .bold, design: .default))
-											.padding(5)
+				ScrollView(.vertical) {
+					VStack(spacing: 0) {
+						ForEach(1..<16, id: \.self) { i in
+							ZStack {
 
-										Text( expandedItemID == data.id ? data.description2 : data.description)
-											.foregroundStyle(text)
-											.font(.system(size: 20, weight: .bold, design: .default))
-											.padding(5)
-									}
-									.frame(width: 550)
-
-									Divider().frame(width: 1, height: expandedItemID == data.id ? 350 : 150).background(.white)
-										.padding(.leading, 10)
-
-									VStack {
-										Text(data.place)
-											.foregroundStyle(text)
-											.font(.system(size: 20, weight: .bold, design: .default))
-											.padding(10)
-											.padding(.top, 50)
-
-										Text("\(data.amount) \(data.currency)")
-											.foregroundStyle(text)
-											.font(.system(size: 20, weight: .bold, design: .default))
-											.padding(10)
-
-										Text("GPA: \(String(format: "%.2f", data.min_requiered_gpa))")
-											.foregroundStyle(text)
-											.font(.system(size: 20, weight: .bold, design: .default))
-											.padding(10)
-											.padding(.bottom, 50)
-									}
-									.frame(width: 150)
-								}
-								.padding(5)
+								Image("\(i)")
+									.resizable()
+									.scaledToFill()
+									.frame(
+										maxWidth: .infinity,
+										maxHeight: UIScreen.main.bounds.height * 0.85
+									)
+									.clipShape(RoundedRectangle(cornerRadius: 55))
 							}
-							.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 20.0))
-							.onTapGesture {
-								withAnimation {
-									if expandedItemID == data.id {
-										expandedItemID = nil
-									} else {
-										expandedItemID = data.id
-									}
-								}
-							}
-						
-					}
-				}
-			}
-	}
-}
-
-@available(iOS 26.0, *)
-struct verticalView: View {
-	
-	@State var selector = false
-	
-	var body: some View {
-		ZStack(alignment: .bottom) {
-			
-			
-			Home().opacity(selector ? 0 : 1)
-			Profile().opacity(selector ? 1 : 0)
-			
-			
-			HStack {
-				RoundedRectangle(cornerRadius: 20)
-					.fill(back)
-					.frame(width: 690, height: 60)
-					.overlay {
-						
-						/// this is likely to change!
-						
-						HStack {
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Home")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.onTapGesture {
-									withAnimation (.easeInOut) {
-										selector = false
-									}
-								}
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Profile")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.onTapGesture {
-									withAnimation (.easeInOut) {
-										selector = true
-									}
-								}
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Icon 3")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Icon 4")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Icon 5")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Icon 6")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							RoundedRectangle(cornerRadius: 15)
-								.fill(back2)
-								.frame(width: 80, height: 40)
-								.padding(5)
-								.overlay{
-									Text("Icon 7")
-										.font(.system(size: 20, weight: .semibold))
-								}
-								.foregroundStyle(text)
-								.glassEffect(.regular.tint(back).interactive(), in: .rect(cornerRadius: 15.0))
-							
-							/// There are 7 here btw
-							
+							.containerRelativeFrame(.vertical, count: 1, spacing: 0) // page = full screen
+							.scrollTargetLayout()
+							.ignoresSafeArea()
 						}
 					}
+				}
+				.scrollTargetBehavior(.paging)
+				.scrollIndicators(.hidden)
+				.padding(.horizontal, 10)
+				.padding(.top, 15)
+					
 			}
-			.glassEffect(.regular.tint(back.opacity(0.4)).interactive(), in: .rect(cornerRadius: 20.0))
-			.padding(.bottom, -10)
 			
+			Rectangle()
+				.fill(
+					LinearGradient(gradient: Gradient(colors: colorScheme == .dark ? [Color.black.opacity(0.0), Color.black.opacity(0.9), Color.black.opacity(1)] : [Color.white.opacity(0.0), Color.white.opacity(0.9), Color.white.opacity(1)]), startPoint: .bottom, endPoint: .top)
+				)
+				.frame(maxWidth: .infinity, maxHeight: 100)
+				.ignoresSafeArea(edges: .all)
+				.padding(.bottom, 780)
+
+		}
+    }
+}
+
+/// revise this, maybe keep the custom tabview to make sure colors match.
+
+@available(iOS 26.0, *)
+struct TabView_: View {
+	
+	@State var showSearch = false
+	
+	var body: some View {
+		ZStack {
+			TabView {
+				ContentView()
+					.tabItem {
+						Label("Home", systemImage: "house.fill")
+					}
+					.tag(0)
+				
+				// Hidden tab for spacing
+				SchoolInfo()
+					.tabItem {
+						Label("School Info", systemImage: "graduationcap.fill")
+					}
+					.tag(1)
+			}
+			
+			// Floating search button
+			VStack {
+				Spacer()
+				HStack {
+					Spacer()
+					
+					Circle()
+						.glassEffect()
+						.frame(width: 60, height: 60)
+						.overlay(
+							Button(action: {
+								showSearch = true
+							}) {
+								Image(systemName: "magnifyingglass")
+									.foregroundStyle(Color.white)
+									.font(.system(size: 22))
+							}
+						)
+						.padding(.trailing, 30)
+						.padding(.bottom, -12)
+				}
+			}
+		}
+		.sheet(isPresented: $showSearch) {
+			SearchView() // Your search view
 		}
 	}
 }
 
-
 @available(iOS 26.0, *)
-struct ContentView: View {
-    var body: some View {
-		verticalView()
-    }
+#Preview {
+	TabView_()
 }
